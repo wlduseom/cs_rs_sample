@@ -1,0 +1,12 @@
+<mvc:View controllerName="sap.sync.project1.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		title="Order Items Check"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        >
+		<ObjectHeader
+			title="주문 내역 확인"/>
+	</Page>
+</mvc:View>

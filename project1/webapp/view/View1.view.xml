@@ -1,0 +1,132 @@
+<mvc:View controllerName="sap.sync.project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    height="100%">
+		<f:DynamicPage id="dynamicPageId"
+			stickySubheaderProvider="iconTabBar"
+			class="sapUiNoContentPadding">
+			<!-- DynamicPage Title -->
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="객실 주문 내역"/>
+					</f:heading>
+					<!-- <f:breadcrumbs>
+						<Breadcrumbs>
+							<Link text="ALL"/>
+							<Link text="준비 완료" />
+							<Link text="전달 완료" />
+						</Breadcrumbs>
+					</f:breadcrumbs> -->
+					<f:expandedContent>
+						<Label text="Customer Service Team"/>
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label text="Customer Service Team"/>
+					</f:snappedContent>
+					<f:snappedTitleOnMobile>
+						<Title text="Customer Service Team"/>
+					</f:snappedTitleOnMobile>
+					<f:content>
+						<OverflowToolbar>
+							<GenericTag text="COUNT"
+								status="Information"
+								press="onGenericTagPress"
+								design="StatusIconHidden">
+								<ObjectNumber number="4"
+									unit="건"
+									emphasized="false"
+									state="Information"/>
+							</GenericTag>
+						</OverflowToolbar>
+					</f:content>
+					<f:actions>
+						<Button text="Back" type="Emphasized"/>
+						<Button text="Contact" type="Transparent" press="onToggleFooter"/>
+					</f:actions>
+				</f:DynamicPageTitle>
+			</f:title>
+			<!-- DynamicPage Header -->
+			<f:header>
+				<f:DynamicPageHeader pinnable="true">
+                    <layout:HorizontalLayout class="sapUiMediumMarginEnd">
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectAttribute text="Grand SAP Hotel"/>
+                            <ObjectAttribute title="지점" text="서울"/>
+                        </layout:VerticalLayout>
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectAttribute text="Customer Service Team"/>
+                            <ObjectAttribute title="담당자" text="짱구"/>
+                        </layout:VerticalLayout>
+                    </layout:HorizontalLayout>
+				</f:DynamicPageHeader>
+			</f:header>
+			<f:content>
+				<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="전체 내역">
+							<Table id="idProductsTable"
+								inset="false"
+								sticky="HeaderToolbar,ColumnHeaders"
+								items="{
+										path: '/orders',
+										sorter: {
+											path: 'orderNum'
+										}
+									}"
+								class="sapUiSmallNegativeMarginBeginEnd"
+								width="auto">
+								<headerToolbar>
+									<Toolbar>
+										<Label text="객실 주문 내역 수행 목록"></Label>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column>
+										<Text text="주문 번호" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+										<Text text="객실 호수" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+										<Text text="수행 상태" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation"
+                                                    press="onCheckOrder">
+										<cells>
+											<Text text="{orderNum}" />
+											<Text text="{roomNum}" />
+											<Text text="{orderStatus}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+						<IconTabFilter text="준비 완료 내역">
+							<Text text="식음료팀에서 준비 완료!" />
+						</IconTabFilter>
+						<IconTabFilter text="전달 완료 내역">
+							<Text text="고객서비스팀에서 전달 완료!" />
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</f:content>
+			<!-- DynamicPage Footer -->
+			<f:footer>
+				<OverflowToolbar>
+					<Button icon="sap-icon://message-popup"
+						text="어느 부서로 연락하시겠습니까?"
+						type="Emphasized"
+						press="onMessageButtonPress"
+						visible="true"/>
+					<ToolbarSpacer/>
+					<Button type="Accept" text="Information Desk"/>
+					<Button type="Reject" text="Food and Beverage"/>
+				</OverflowToolbar>
+			</f:footer>
+		</f:DynamicPage>
+</mvc:View>
